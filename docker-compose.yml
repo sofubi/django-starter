@@ -6,7 +6,7 @@ services:
     labels:
       shipyard.before: 'poetry run python src/manage.py migrate'
       shipyard.route: '/'
-    build: .
+    build: 
     volumes:
       - './src:/srv/src:ro'
     ports:
