@@ -4,7 +4,7 @@ services:
 
   django:
     labels:
-      shipyard.init:  "while :; do echo 'Hit CTRL+C'; sleep 1; done"
+      shipyard.before: 'poetry run python src/manage.py migrate'
       shipyard.route: '/'
     build: .
     volumes:
@@ -17,6 +17,8 @@ services:
   postgres:
     image: 'postgres:9.6.20-alpine'
     restart: always
+    labels:
+      shipyard.init:  "while :; do echo 'Hit CTRL+C'; sleep 1; done"
     volumes:
       - 'postgres:/var/lib/postgresql/data'
     environment:
