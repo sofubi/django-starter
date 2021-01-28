@@ -2,17 +2,17 @@ version: '3.8'
    
 services:
 
-django:
-  labels:
-    shipyard.init:  "while :; do echo 'Hit CTRL+C'; sleep 1; done"
-    shipyard.route: '/'
-  build: .
-  volumes:
-    - './src:/srv/src:ro'
-  ports:
-    - '8080:8080'
-  depends_on:
-    - postgres
+  django:
+    labels:
+      shipyard.init:  "while :; do echo 'Hit CTRL+C'; sleep 1; done"
+      shipyard.route: '/'
+    build: .
+    volumes:
+      - './src:/srv/src:ro'
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
 
   postgres:
     image: 'postgres:9.6.20-alpine'
